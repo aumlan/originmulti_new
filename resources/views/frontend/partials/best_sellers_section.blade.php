@@ -40,39 +40,18 @@
                             @endphp
                             <div class="carousel-box">
                                 <div class="row no-gutters box-3 align-items-center border border-gray-500 rounded hov-shadow-md my-2 has-transition">
-{{--                                    <div class="col-4">--}}
-{{--                                        <a href="{{ route('shop.visit', $seller->user->shop->slug) }}" class="d-block p-3">--}}
-{{--                                            <img--}}
-{{--                                                src="{{ static_asset('assets/img/placeholder.jpg') }}"--}}
-{{--                                                data-src="@if ($seller->user->shop->logo !== null) {{ uploaded_asset($seller->user->shop->logo) }} @else {{ static_asset('assets/img/placeholder.jpg') }} @endif"--}}
-{{--                                                alt="{{ $seller->user->shop->name }}"--}}
-{{--                                                class="img-fluid lazyload"--}}
-{{--                                            >--}}
-{{--                                        </a>--}}
-{{--                                        <h2 class="h6 fw-600 text-truncate">--}}
-{{--                                            <a href="{{ route('shop.visit', $seller->user->shop->slug) }}" class="text-reset">{{ $seller->user->shop->name }}</a>--}}
-{{--                                        </h2>--}}
-{{--                                        <div class="rating rating-sm mb-2">--}}
-{{--                                            @if ($total > 0)--}}
-{{--                                                {{ renderStarRating($rating/$total) }}--}}
-{{--                                            @else--}}
-{{--                                                {{ renderStarRating(0) }}--}}
-{{--                                            @endif--}}
-{{--                                        </div>--}}
-{{--                                        <a href="{{ route('shop.visit', $seller->user->shop->slug) }}" class="btn btn-soft-primary btn-sm">--}}
-{{--                                            {{ translate('Visit Store') }} <i class="las la-angle-right"></i>--}}
-{{--                                        </a>--}}
-{{--                                    </div>--}}
+                                    <div class="col-4">
+                                        <a href="{{ route('shop.visit', $seller->user->shop->slug) }}" class="d-block p-3">
+                                            <img
+                                                src="{{ static_asset('assets/img/placeholder.jpg') }}"
+                                                data-src="@if ($seller->user->shop->logo !== null) {{ uploaded_asset($seller->user->shop->logo) }} @else {{ static_asset('assets/img/placeholder.jpg') }} @endif"
+                                                alt="{{ $seller->user->shop->name }}"
+                                                class="img-fluid lazyload"
+                                            >
+                                        </a>
+                                    </div>
                                     <div class="col-8 border-left-custom">
                                         <div class="p-3 text-left">
-                                            <a href="{{ route('shop.visit', $seller->user->shop->slug) }}" class="d-block p-3">
-                                                <img
-                                                    src="{{ static_asset('assets/img/placeholder.jpg') }}"
-                                                    data-src="@if ($seller->user->shop->logo !== null) {{ uploaded_asset($seller->user->shop->logo) }} @else {{ static_asset('assets/img/placeholder.jpg') }} @endif"
-                                                    alt="{{ $seller->user->shop->name }}"
-                                                    class="img-fluid lazyload"
-                                                >
-                                            </a>
                                             <h2 class="h6 fw-600 text-truncate">
                                                 <a href="{{ route('shop.visit', $seller->user->shop->slug) }}" class="text-reset">{{ $seller->user->shop->name }}</a>
                                             </h2>
