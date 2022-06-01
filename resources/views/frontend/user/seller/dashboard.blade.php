@@ -82,34 +82,68 @@
     </div>
 
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-6">
           <div class="card">
               <div class="card-header">
-                  <h5 class="mb-0 h6">{{ translate('Orders') }}</h5>
+                  <h5 class="mb-0 h6"><b>{{ translate('Orders') }}</b></h5>
               </div>
               <div class="card-body">
                   <table class="table aiz-table mb-0">
                       <tr>
-                          <td>{{ translate('Total orders')}}:</td>
-                          <td>{{ count(\App\OrderDetail::where('seller_id', Auth::user()->id)->get()) }}</strong></td>
+                          <td><b>{{ translate('Total orders')}}:</b></td>
+                          <td><span class="badge badge-success">{{ count(\App\OrderDetail::where('seller_id', Auth::user()->id)->get()) }}</span></strong></td>
                       </tr>
                       <tr>
-                          <td>{{ translate('Pending orders')}}:</td>
-                          <td>{{ count(\App\OrderDetail::where('seller_id', Auth::user()->id)->where('delivery_status', 'pending')->get()) }}</strong></td>
+                          <td><b>{{ translate('Pending orders')}}:</b></td>
+                          <td><span class="badge badge-warning">{{ count(\App\OrderDetail::where('seller_id', Auth::user()->id)->where('delivery_status', 'pending')->get()) }}</span></strong></td>
                       </tr>
                       <tr>
-                          <td>{{ translate('Cancelled orders')}}:</td>
-                          <td>{{ count(\App\OrderDetail::where('seller_id', Auth::user()->id)->where('delivery_status', 'cancelled')->get()) }}</strong></td>
+                          <td><b>{{ translate('Cancelled orders')}}:</b></td>
+                          <td><span class="badge badge-danger">{{ count(\App\OrderDetail::where('seller_id', Auth::user()->id)->where('delivery_status', 'cancelled')->get()) }}</span></strong></td>
                       </tr>
                       <tr>
-                          <td>{{ translate('Successful orders')}}:</td>
-                          <td>{{ count(\App\OrderDetail::where('seller_id', Auth::user()->id)->where('delivery_status', 'delivered')->get()) }}</strong></td>
+                          <td><b>{{ translate('Successful orders')}}:</b></td>
+                          <td><span class="badge badge-success">{{ count(\App\OrderDetail::where('seller_id', Auth::user()->id)->where('delivery_status', 'delivered')->get()) }}</span></strong></td>
                       </tr>
                   </table>
               </div>
           </div>
         </div>
-        <div class="col-md-5">
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0">{{ translate('Products') }}</h6>
+                </div>
+                        <div class="card-body">
+                  <table class="table aiz-table mb-0">
+                    <thead>
+                        <tr>
+                            <th>{{ translate('Category')}}</th>
+                            <th>{{ translate('Product')}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      @foreach (\App\Category::all() as $key => $category)
+                          @if(count($category->products->where('user_id', Auth::user()->id))>0)
+                            <tr>
+                                <td>{{ $category->getTranslation('name') }}</td>
+                                <td>{{ count($category->products->where('user_id', Auth::user()->id)) }}</td>
+                            </tr>
+                        @endif
+                    @endforeach
+                  </table>
+                  <br>
+                  <div class="text-center">
+                      <a href="{{ route('seller.products.upload')}}" class="btn btn-primary d-inline-block">{{ translate('Add New Product')}}</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-12">
           <div class="bg-white mt-4 p-5 text-center">
               <div class="mb-3">
                   @if(Auth::user()->seller->verification_status == 0)
@@ -123,39 +157,13 @@
               @endif
           </div>
         </div>
+
+
     </div>
 
     <div class="row">
-      <div class="col-md-8">
-          <div class="card">
-              <div class="card-header">
-                  <h6 class="mb-0">{{ translate('Products') }}</h6>
-              </div>
-    		          <div class="card-body">
-                <table class="table aiz-table mb-0">
-                  <thead>
-                      <tr>
-                          <th>{{ translate('Category')}}</th>
-                          <th>{{ translate('Product')}}</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                    @foreach (\App\Category::all() as $key => $category)
-                        @if(count($category->products->where('user_id', Auth::user()->id))>0)
-                          <tr>
-                              <td>{{ $category->getTranslation('name') }}</td>
-                              <td>{{ count($category->products->where('user_id', Auth::user()->id)) }}</td>
-                          </tr>
-                      @endif
-                  @endforeach
-                </table>
-                <br>
-                <div class="text-center">
-                    <a href="{{ route('seller.products.upload')}}" class="btn btn-primary d-inline-block">{{ translate('Add New Product')}}</a>
-                </div>
-              </div>
-          </div>
-      </div>
+
+
       <div class="col-md-4">
           @if (\App\Addon::where('unique_identifier', 'seller_subscription')->first() != null && \App\Addon::where('unique_identifier', 'seller_subscription')->first()->activated)
 
@@ -182,16 +190,7 @@
                   </div>
               </div>
           @endif
-          <div class="bg-white mt-4 p-4 text-center">
-              <div class="h5 fw-600">{{ translate('Shop')}}</div>
-              <p>{{ translate('Manage & organize your shop')}}</p>
-              <a href="{{ route('shops.index') }}" class="btn btn-soft-primary">{{ translate('Go to setting')}}</a>
-          </div>
-          <div class="bg-white mt-4 p-4 text-center">
-              <div class="h5 fw-600">{{ translate('Payment')}}</div>
-              <p>{{ translate('Configure your payment method')}}</p>
-              <a href="{{ route('profile') }}" class="btn btn-soft-primary">{{ translate('Configure Now')}}</a>
-          </div>
+
       </div>
     </div>
 

@@ -3973,7 +3973,7 @@ input[type="number"] {
     box-shadow: 0 0 13px 0 rgba(82, 63, 105, 0.05);
     background-color: #fff;
     margin-bottom: 20px;
-    border-color: #ebedf2;
+    border-color: #a0aec0 !important
 }
 .card .card-header {
     display: -webkit-box;
@@ -6509,7 +6509,7 @@ ul.social.colored [class*="linkedin"] {
     border-radius: 4px;
     /*max-height: 100vh;
     overflow-y: auto;*/
-    border: 1px solid #ebedf2;
+    border: 1px solid #a0aec0;
 }
 
 .aiz-user-panel {

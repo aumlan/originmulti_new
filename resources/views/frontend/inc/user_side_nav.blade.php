@@ -118,7 +118,7 @@
                         </a>
                     </li>
                 @endif
-                
+
                 @php
                     $delivery_viewed = App\Order::where('user_id', Auth::user()->id)->where('delivery_viewed', 0)->get()->count();
                     $payment_status_viewed = App\Order::where('user_id', Auth::user()->id)->where('payment_status_viewed', 0)->get()->count();
@@ -265,7 +265,7 @@
                             <span class="aiz-side-nav-text">{{ translate('Money Withdraw') }}</span>
                         </a>
                     </li>
-                    
+
                     <li class="aiz-side-nav-item">
                         <a href="{{ route('commission-log.index') }}" class="aiz-side-nav-link">
                             <i class="las la-file-alt aiz-side-nav-icon"></i>

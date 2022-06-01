@@ -5,10 +5,12 @@
     <div class="aiz-titlebar mt-2 mb-4">
       <div class="row align-items-center">
         <div class="col-md-6">
-            <h1 class="h3">{{ translate('Products') }}</h1>
+            <h1 class="h3"><b>{{ translate('Products') }}</b></h1>
         </div>
       </div>
     </div>
+
+
 
     <div class="row gutters-10 justify-content-center">
         @if (\App\Addon::where('unique_identifier', 'seller_subscription')->first() != null && \App\Addon::where('unique_identifier', 'seller_subscription')->first()->activated)
@@ -25,15 +27,17 @@
             </div>
         @endif
 
+
+
         <div class="col-md-4 mx-auto mb-3" >
             <a href="{{ route('seller.products.upload')}}">
-              <div class="p-3 rounded mb-3 c-pointer text-center bg-white shadow-sm hov-shadow-lg has-transition">
-                  <span class="size-60px rounded-circle mx-auto bg-secondary d-flex align-items-center justify-content-center mb-3">
-                      <i class="las la-plus la-3x text-white"></i>
-                  </span>
-                  <div class="fs-18 text-primary">{{ translate('Add New Product') }}</div>
-              </div>
-            </a>
+                <div class="p-3 rounded mb-3 c-pointer text-center bg-white shadow-sm hov-shadow-lg has-transition">
+                    <span class="size-60px rounded-circle mx-auto bg-secondary d-flex align-items-center justify-content-center mb-3">
+                        <i class="las la-plus la-3x text-white"></i>
+                    </span>
+                    <div class="fs-18 text-primary">{{ translate('Add New Product') }}</div>
+                </div>
+              </a>
         </div>
 
         @if (\App\Addon::where('unique_identifier', 'seller_subscription')->first() != null && \App\Addon::where('unique_identifier', 'seller_subscription')->first()->activated)
