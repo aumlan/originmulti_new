@@ -1,19 +1,21 @@
 @extends('backend.layouts.app')
 
 @section('content')
-@if(env('MAIL_USERNAME') == null && env('MAIL_PASSWORD') == null)
+
+{{-- @if(env('MAIL_USERNAME') == null && env('MAIL_PASSWORD') == null)
     <div class="">
         <div class="alert alert-danger d-flex align-items-center">
             {{translate('Please Configure SMTP Setting to work all email sending functionality')}},
             <a class="alert-link ml-2" href="{{ route('smtp_settings.index') }}">{{ translate('Configure Now') }}</a>
         </div>
     </div>
-@endif
+@endif --}}
+
 @if(Auth::user()->user_type == 'admin' || in_array('1', json_decode(Auth::user()->staff->role->permissions)))
 <div class="row gutters-10">
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         <div class="row gutters-10">
-            <div class="col-6">
+            <div class="col-3">
                 <div class="bg-grad-2 text-white rounded-lg mb-4 overflow-hidden">
                     <div class="px-3 pt-3">
                         <div class="opacity-50">
@@ -27,7 +29,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="bg-grad-3 text-white rounded-lg mb-4 overflow-hidden">
                     <div class="px-3 pt-3">
                         <div class="opacity-50">
@@ -41,7 +43,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="bg-grad-1 text-white rounded-lg mb-4 overflow-hidden">
                     <div class="px-3 pt-3">
                         <div class="opacity-50">
@@ -55,7 +57,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="bg-grad-4 text-white rounded-lg mb-4 overflow-hidden">
                     <div class="px-3 pt-3">
                         <div class="opacity-50">
@@ -72,18 +74,8 @@
         </div>
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         <div class="row gutters-10">
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h6 class="mb-0 fs-14">{{ translate('Products') }}</h6>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="pie-1" class="w-100" height="305"></canvas>
-                    </div>
-                </div>
-            </div>
             <div class="col-6">
                 <div class="card">
                     <div class="card-header">
@@ -94,6 +86,17 @@
                     </div>
                 </div>
             </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="mb-0 fs-14">{{ translate('Products') }}</h6>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="pie-1" class="w-100" height="305"></canvas>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -357,16 +360,16 @@
                         @php
                             $category_ids = \App\Utility\CategoryUtility::children_ids($category->id);
                             $category_ids[] = $category->id;
-                            
+
                             $products = \App\Product::whereIn('category_id', $category_ids)->get();
                             $qty = 0;
                             foreach ($products as $key => $product) {
-                                
+
                                 foreach ($product->stocks as $key => $stock) {
                                     $qty += $stock->qty;
                                 }
-                                
-                                
+
+
                             }
                         @endphp
                         {{ $qty }},
